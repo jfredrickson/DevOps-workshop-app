@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+  - '4'
+deploy:
+  provider: cloudfoundry
+  api: https://api.fr.cloud.gov
+  organization: gsa-cto
+  space: sandbox
+  on:
+    repo: jfredrickson5/DevOps-test-node
