@@ -1,0 +1,19 @@
+{
+  "name": "devops-test-node",
+  "version": "1.0.0",
+  "description": "DevOps Workshop Node.js test app",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfredrickson5/DevOps-test-node.git"
+  },
+  "author": "",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/jfredrickson5/DevOps-test-node/issues"
+  },
+  "homepage": "https://github.com/jfredrickson5/DevOps-test-node#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
