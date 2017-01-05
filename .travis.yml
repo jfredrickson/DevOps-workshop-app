@@ -4,6 +4,8 @@ node_js:
 deploy:
   provider: cloudfoundry
   api: https://api.fr.cloud.gov
+  username: $DEPLOYER_USERNAME
+  password: $DEPLOYER_PASSWORD
   organization: gsa-cto
   space: sandbox
   on:
