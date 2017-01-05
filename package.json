@@ -4,6 +4,7 @@
   "description": "DevOps Workshop Node.js test app",
   "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "node test.js"
   },
   "repository": {
