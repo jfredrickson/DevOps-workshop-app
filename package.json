@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "DevOps Workshop Node.js test app",
   "main": "app.js",
+  "scripts": {
+    "test": "node test.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/jfredrickson5/DevOps-test-node.git"
