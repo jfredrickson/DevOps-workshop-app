@@ -22,7 +22,7 @@ Here is how to reproduce this DevOps environment.
 
 ### cloud.gov
 
-1. Create a new [space](https://cloud.gov/docs/getting-started/concepts/#spaces) in which the app will run
+1. Create a new [space](https://cloud.gov/docs/getting-started/concepts/#spaces) in which the app will run (or use the org's `sandbox` space)
 2. [Provision a deployer account](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials)
 
 ### GitHub
@@ -30,10 +30,15 @@ Here is how to reproduce this DevOps environment.
 1. Either create a new repository and commit a simple app, or fork this repository
 2. Ensure you have the following files in your repository, and configure them as appropriate:
   1. [`manifest.yml`](https://github.com/jfredrickson5/DevOps-test-node/blob/master/manifest.yml) for cloud.gov
+    1. `name` - Give your app an unique name
   2. [`.travis.yml`](https://github.com/jfredrickson5/DevOps-test-node/blob/master/.travis.yml) for Travis CI
+    1. The `space` field should match whatever space you created in cloud.gov (or use `sandbox`)
+    2. The `repo` field should be your GitHub repo
 
 ### Travis CI
 
-1. Add [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) to Travis CI settings so that it can authenticate to the cloud.gov API when deploying
+1. [Connect your GitHub account to Travis CI](https://docs.travis-ci.com/user/for-beginners)
+2. On your [Travis CI profile page](https://travis-ci.org/profile), enable builds for your GitHub repo
+3. Add [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) to Travis CI settings for your repo so that it can authenticate to the cloud.gov API when deploying
   1. `DEPLOYER_USERNAME` is the username of the deployer account you created when provisioning a deployer account in cloud.gov
   2. `DEPLOYER_PASSWORD` is the password of the deployer account you created when provisioning a deployer account in cloud.gov
