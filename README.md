@@ -27,7 +27,7 @@ Here is how to reproduce this DevOps environment.
 
 ### GitHub
 
-1. Either create a new repository and commit a simple app, or fork this repository
+1. Either [create a new repository](https://help.github.com/articles/create-a-repo/) and commit a simple app, or [fork this repository](https://help.github.com/articles/fork-a-repo/)
 2. Ensure you have the following files in your repository, and configure them as appropriate:
   1. [`manifest.yml`](https://github.com/jfredrickson5/DevOps-test-node/blob/master/manifest.yml) for cloud.gov
     1. `name` - Give your app an unique name
