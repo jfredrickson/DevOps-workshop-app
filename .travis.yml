@@ -2,11 +2,21 @@ language: node_js
 node_js:
   - '4'
 deploy:
-  provider: cloudfoundry
-  api: https://api.fr.cloud.gov
-  username: $DEPLOYER_USERNAME
-  password: $DEPLOYER_PASSWORD
-  organization: gsa-cto
-  space: sandbox
-  on:
-    repo: jfredrickson5/DevOps-test-node
+  - provider: cloudfoundry
+    api: https://api.fr.cloud.gov
+    username: $DEV_DEPLOYER_USERNAME
+    password: $DEV_DEPLOYER_PASSWORD
+    organization: gsa-cto
+    space: workshop-dev
+    manifest: manifest.dev.yml
+    on:
+      branch: dev
+  - provider: cloudfoundry
+    api: https://api.fr.cloud.gov
+    username: $TEST_DEPLOYER_USERNAME
+    password: $TEST_DEPLOYER_PASSWORD
+    organization: gsa-cto
+    space: workshop-test
+    manifest: manifest.test.yml
+    on:
+      branch: test

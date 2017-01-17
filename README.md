@@ -1,4 +1,4 @@
-# Node.js Test App for DevOps Workshop
+# DevOps Workshop test app
 
 This app is for testing continuous deployments on [cloud.gov](https://cloud.gov).
 
@@ -6,7 +6,7 @@ This app is for testing continuous deployments on [cloud.gov](https://cloud.gov)
 
 This is a basic [Node.js](https://nodejs.org) app that outputs a simple message.
 
-The app is running as a single instance in a single [cloud.gov space](https://cloud.gov/docs/getting-started/concepts/#spaces). *(TODO: create separate spaces for dev and prod, and have Travis CI deploy into these separate environments.)*
+The app is running as a single instance in a single [cloud.gov space](https://cloud.gov/docs/getting-started/concepts/#spaces).
 
 Travis CI is configured to run the app's unit tests and, if tests are successful, deploy the code to cloud.gov. Travis CI is configured with environment variables containing a [deployer account's](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) credentials. This allows Travis CI to connect to the cloud.gov API and push the app.
 
@@ -18,27 +18,75 @@ The general process:
 
 ## Setup
 
-Here is how to reproduce this DevOps environment.
+Here is how to reproduce this environment.
 
-### cloud.gov
+### 1. cloud.gov
 
-1. Create a new [space](https://cloud.gov/docs/getting-started/concepts/#spaces) in which the app will run (or use the org's `sandbox` space)
-2. [Provision a deployer account](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) (make a note of the new username and password cloud.gov creates for you; you will input this into Travis CI later)
+#### 1.1 Create spaces
 
-### GitHub
+Create a new [space](https://cloud.gov/docs/getting-started/concepts/#spaces) for each environment (dev, test, prod, etc) in which the app will run (or just use the org's `sandbox` space). This example uses a development environment, a test environment, and a production environment.
 
-1. Either [create a new repository](https://help.github.com/articles/create-a-repo/) and commit a simple app, or [fork this repository](https://help.github.com/articles/fork-a-repo/)
-2. Ensure you have the following files in your repository, and configure them as appropriate:
-  1. [`manifest.yml`](https://github.com/jfredrickson5/DevOps-test-node/blob/master/manifest.yml) for cloud.gov
-    1. `name` - Give your app an unique name
-  2. [`.travis.yml`](https://github.com/jfredrickson5/DevOps-test-node/blob/master/.travis.yml) for Travis CI
-    1. The `space` field should match whatever space you created in cloud.gov (or use `sandbox`)
-    2. The `repo` field should be your GitHub repo
+Example:
 
-### Travis CI
+```
+cf create-space workshop-dev
+cf create-space workshop-test
+cf create-space workshop-prod
+```
 
-1. [Connect your GitHub account to Travis CI](https://docs.travis-ci.com/user/for-beginners)
-2. On your [Travis CI profile page](https://travis-ci.org/profile), enable builds for your GitHub repo
-3. Add [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) to Travis CI settings for your repo so that it can authenticate to the cloud.gov API when deploying
-  1. `DEPLOYER_USERNAME` is the username of the deployer account you created when provisioning a deployer account in cloud.gov
-  2. `DEPLOYER_PASSWORD` is the password of the deployer account you created when provisioning a deployer account in cloud.gov
+#### 1.2 Provision deployer accounts
+
+[Provision a deployer account](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) for each space you want Travis CI to continuously deploy to. Make a note of the new usernames and passwords that cloud.gov creates for you; you will input this into Travis CI later.
+
+This example will continuously deploy to the development and test environments, while requiring a manual deployment to production.
+
+Example:
+```
+cf target -o gsa-cto -s workshop-dev
+cf create-service cloud-gov-service-account space-deployer workshop-dev-deployer
+
+cf target -o gsa-cto -s workshop-test
+cf create-service cloud-gov-service-account space-deployer workshop-test-deployer
+```
+
+### 2. GitHub
+
+#### 2.1 Set up a repository
+
+Either [create a new repository](https://help.github.com/articles/create-a-repo/) and commit a simple app, or [fork this repository](https://help.github.com/articles/fork-a-repo/).
+
+#### 2.2 Add or edit configuration files
+
+Ensure you have the following files in your repository, and configure them as appropriate.
+
+##### manifest.yml
+
+We actually have three manifest files. Make sure you set an unique name in each file:
+
+* [`manifest.dev.yml`](manifest.dev.yml) - configures the development environment
+* [`manifest.test.yml`](manifest.test.yml) - configures the test environment
+* [`manifest.yml`](manifest.yml) - configures the production environment
+
+##### .travis.yml
+
+The [`.travis.yml`](.travis.yml) file tells Travis CI how to deploy the app. There are two sections under `deploy`. One is for dev and one is for test. Make sure the `space` fields match whatever spaces you created in cloud.gov (or use `sandbox`).
+
+### 3. Travis CI
+
+#### 3.1 Connect GitHub
+
+[Connect your GitHub account to Travis CI](https://docs.travis-ci.com/user/for-beginners).
+
+#### 3.2 Enable builds
+
+On your [Travis CI profile page](https://travis-ci.org/profile), enable builds for your GitHub repo.
+
+#### 3.3 Configure deployment variables
+
+Add [environment variables](https://docs.travis-ci.com/user/environment-variables/#Defining-Variables-in-Repository-Settings) to Travis CI settings. These should match the deployer account credentials you created in step [1.2](1.2 Provision deployer accounts):
+  1. `DEV_DEPLOYER_USERNAME`
+  2. `DEV_DEPLOYER_PASSWORD`
+  3. `TEST_DEPLOYER_USERNAME`
+  4. `TEST_DEPLOYER_PASSWORD`
+
+Note that `.travis.yml` makes references to these environment variables. This is how Travis CI authenticates to cloud.gov when deploying to the dev and test environments.
