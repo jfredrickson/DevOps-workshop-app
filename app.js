@@ -1,11 +1,13 @@
 var express = require('express')
+var cfenv = require('cfenv')
 var app = express()
-var port = process.env.PORT || 3000
+var appEnv = cfenv.getAppEnv()
 
 app.get('/', function (req, res) {
-  res.send('Hello! 1234')
+  var appId = appEnv.app.application_id || "(local)"
+  res.send('Hello! ' + appId)
 })
 
-app.listen(port, function () {
-  console.log('Listening on port ' + port)
+app.listen(appEnv.port, function () {
+  console.log('Listening on port ' + appEnv.port)
 })

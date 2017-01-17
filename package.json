@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/jfredrickson5/DevOps-test-node#readme",
   "dependencies": {
+    "cfenv": "^1.0.3",
     "express": "^4.14.0"
   }
 }
