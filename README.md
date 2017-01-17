@@ -6,15 +6,30 @@ This app is for testing continuous deployments on [cloud.gov](https://cloud.gov)
 
 This is a basic [Node.js](https://nodejs.org) app that outputs a simple message.
 
-The app is running as a single instance in a single [cloud.gov space](https://cloud.gov/docs/getting-started/concepts/#spaces).
+The app has development, test, and production environments in cloud.gov Each of these environments is contained in its own [cloud.gov space](https://cloud.gov/docs/getting-started/concepts/#spaces).
 
-Travis CI is configured to run the app's unit tests and, if tests are successful, deploy the code to cloud.gov. Travis CI is configured with environment variables containing a [deployer account's](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) credentials. This allows Travis CI to connect to the cloud.gov API and push the app.
+Travis CI is configured to run the app's unit tests and, if tests are successful, [deploy the code to cloud.gov](https://cloud.gov/docs/apps/continuous-deployment/). Travis CI is configured with environment variables containing a [deployer account's](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) credentials. This allows Travis CI to connect to the cloud.gov API and push the app.
 
-The general process:
+### The general process
 
-1. Developer pushes a change to GitHub
+Development:
+
+1. Developer pushes a change to the `dev` branch on GitHub
 2. Travis CI detects the push, and runs tests
-3. If tests pass, Travis CI [deploys to cloud.gov](https://cloud.gov/docs/apps/continuous-deployment/)
+3. If tests pass, Travis CI deploys to the cloud.gov dev environment
+
+Testing:
+
+1. Developer merges the `dev` branch into the `test` branch
+2. Developer pushes the updated `test` branch to GitHub
+3. Travis CI detects the push to `test`, and runs tests
+4. If tests pass, Travis CI deploys to the cloud.gov test environment
+5. Users can test the app in the test environment
+
+Production:
+
+1. Developer merges the `test` branch into the `master` branch
+2. Developer or ops engineer does a `cf push` to manually deploy to production
 
 ## Setup
 
