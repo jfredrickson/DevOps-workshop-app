@@ -23,7 +23,7 @@ Here is how to reproduce this DevOps environment.
 ### cloud.gov
 
 1. Create a new [space](https://cloud.gov/docs/getting-started/concepts/#spaces) in which the app will run (or use the org's `sandbox` space)
-2. [Provision a deployer account](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials)
+2. [Provision a deployer account](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) (make a note of the new username and password cloud.gov creates for you; you will input this into Travis CI later)
 
 ### GitHub
 
