@@ -1,5 +1,5 @@
 ---
 applications:
-  - name: devops-test-node
+  - name: workshop-app
     memory: 64M
     buildpack: https://github.com/cloudfoundry/nodejs-buildpack
