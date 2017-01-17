@@ -53,7 +53,7 @@ cf create-space workshop-prod
 
 [Provision a deployer account](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) for each space you want Travis CI to continuously deploy to. Make a note of the new usernames and passwords that cloud.gov creates for you; you will input this into Travis CI later.
 
-This example will continuously deploy to the development and test environments, while requiring a manual deployment to production.
+This example will continuously deploy to the development and test environments, while requiring a manual deployment to production. Because we are manually deploying to production, we do not create a deployer account for the `workshop-prod` space in this example.
 
 Example:
 ```
