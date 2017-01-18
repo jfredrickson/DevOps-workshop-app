@@ -1,4 +1,4 @@
-![Travis CI](https://travis-ci.org/jfredrickson5/DevOps-workshop-app.svg?branch=dev)
+[![Travis CI](https://travis-ci.org/jfredrickson5/DevOps-workshop-app.svg?branch=dev)](https://travis-ci.org/jfredrickson5/DevOps-workshop-app)
 
 # DevOps Workshop test app
 
