@@ -4,7 +4,7 @@
   "description": "DevOps Workshop Node.js test app",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
+    "start": "nodemon app.js",
     "test": "node test.js"
   },
   "repository": {
@@ -18,6 +18,10 @@
   },
   "homepage": "https://github.com/jfredrickson5/DevOps-test-node#readme",
   "dependencies": {
+    "cfenv": "^1.0.3",
     "express": "^4.14.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
   }
 }
