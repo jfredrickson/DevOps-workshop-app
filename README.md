@@ -8,7 +8,7 @@ This is a basic [Node.js](https://nodejs.org) app that outputs a simple message.
 
 The app has development, test, and production environments in cloud.gov Each of these environments is contained in its own [cloud.gov space](https://cloud.gov/docs/getting-started/concepts/#spaces).
 
-Travis CI is configured to run the app's unit tests and, if tests are successful, [deploy the code to cloud.gov](https://cloud.gov/docs/apps/continuous-deployment/). Travis CI is configured with environment variables containing a [deployer account's](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) credentials. This allows Travis CI to connect to the cloud.gov API and push the app.
+[Travis CI](https://travis-ci.org/) is configured to run the app's unit tests and, if tests are successful, [deploy the code to cloud.gov](https://cloud.gov/docs/apps/continuous-deployment/). Travis CI is configured with environment variables containing a [deployer account's](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) credentials. This allows Travis CI to connect to the cloud.gov API and push the app.
 
 ### The general process
 
