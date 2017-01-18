@@ -5,7 +5,7 @@ var appEnv = cfenv.getAppEnv()
 
 app.get('/', function (req, res) {
   var appId = appEnv.app.application_id || "(local)"
-  res.send('Hello! ' + appId)
+  res.send('Hello! This is Jeffs awesome app ' + appId)
 })
 
 app.listen(appEnv.port, function () {
