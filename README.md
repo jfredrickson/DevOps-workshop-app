@@ -1,3 +1,5 @@
+![Travis CI](https://travis-ci.org/jfredrickson5/DevOps-workshop-app.svg?branch=dev)
+
 # DevOps Workshop test app
 
 This app is for testing continuous deployments on [cloud.gov](https://cloud.gov).
@@ -8,7 +10,7 @@ This is a basic [Node.js](https://nodejs.org) app that outputs a simple message.
 
 The app has development, test, and production environments in cloud.gov Each of these environments is contained in its own [cloud.gov space](https://cloud.gov/docs/getting-started/concepts/#spaces).
 
-Travis CI is configured to run the app's unit tests and, if tests are successful, [deploy the code to cloud.gov](https://cloud.gov/docs/apps/continuous-deployment/). Travis CI is configured with environment variables containing a [deployer account's](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) credentials. This allows Travis CI to connect to the cloud.gov API and push the app.
+[Travis CI](https://travis-ci.org/) is configured to run the app's unit tests and, if tests are successful, [deploy the code to cloud.gov](https://cloud.gov/docs/apps/continuous-deployment/). Travis CI is configured with environment variables containing a [deployer account's](https://cloud.gov/docs/apps/continuous-deployment/#provisioning-deployment-credentials) credentials. This allows Travis CI to connect to the cloud.gov API and push the app.
 
 ### The general process
 
@@ -105,3 +107,11 @@ Add [environment variables](https://docs.travis-ci.com/user/environment-variable
   4. `TEST_DEPLOYER_PASSWORD`
 
 Note that `.travis.yml` makes references to these environment variables. This is how Travis CI authenticates to cloud.gov when deploying to the dev and test environments.
+
+## Sandbox environments
+
+Here are the cloud.gov sandboxes that this demo runs in:
+
+* [Development](https://workshop-app-dev.app.cloud.gov/)
+* [Test](https://workshop-app-test.app.cloud.gov/)
+* [Production](https://workshop-app.app.cloud.gov/)
