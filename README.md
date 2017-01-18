@@ -107,3 +107,11 @@ Add [environment variables](https://docs.travis-ci.com/user/environment-variable
   4. `TEST_DEPLOYER_PASSWORD`
 
 Note that `.travis.yml` makes references to these environment variables. This is how Travis CI authenticates to cloud.gov when deploying to the dev and test environments.
+
+## Sandbox environments
+
+Here are the cloud.gov sandboxes that this demo runs in:
+
+* [Development](https://workshop-app-dev.app.cloud.gov/)
+* [Test](https://workshop-app-test.app.cloud.gov/)
+* [Production](https://workshop-app.app.cloud.gov/)
