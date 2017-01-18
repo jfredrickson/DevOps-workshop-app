@@ -1,4 +1,4 @@
-Update to Jeff's Readme file!
+![Travis CI](https://travis-ci.org/jfredrickson5/DevOps-workshop-app.svg?branch=dev)
 
 # DevOps Workshop test app
 
